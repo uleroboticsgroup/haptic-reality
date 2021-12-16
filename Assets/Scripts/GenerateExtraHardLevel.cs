@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GenerateExtraHardLevel : MonoBehaviour
 {
-    private float VOXEL_SIZE = 0.02f;
+    private float VOXEL_SIZE = 0.01f;
     private int VOXELS_PER_REGION = 4;
+    private int DEPTH = 6;
 
     private int hDispl;
     private int vDispl;
@@ -48,7 +49,7 @@ public class GenerateExtraHardLevel : MonoBehaviour
         {
             for (int j = 0; j < VOXELS_PER_REGION; j++)
             {
-                for (int k = 0; k < VOXELS_PER_REGION; k++)
+                for (int k = 0; k < DEPTH; k++)
                 {
 
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -56,16 +57,14 @@ public class GenerateExtraHardLevel : MonoBehaviour
                     cube.transform.parent = this.transform;
                     cube.transform.localScale = new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
                     cube.transform.localPosition = new Vector3((i * VOXEL_SIZE) - (VOXEL_SIZE / 2), (j * VOXEL_SIZE) + (VOXEL_SIZE / 2), k * VOXEL_SIZE);
-                    //cube.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
+                    cube.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
 
-                    if (i > -(VOXELS_PER_REGION / 2) + hDispl && j < (VOXELS_PER_REGION / 2) + vDispl && k < VOXELS_PER_REGION / 2)
+                    if (i > -(VOXELS_PER_REGION / 2) + hDispl && j < (VOXELS_PER_REGION / 2) + vDispl && k < DEPTH / 2)
                     {
-                        cube.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
                         cube.name = "Quitar";
                     }
                     else
                     {
-                        cube.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
                         cube.name = "Dejar";
                     }
                 }
@@ -79,7 +78,7 @@ public class GenerateExtraHardLevel : MonoBehaviour
         {
             for (int j = 0; j < VOXELS_PER_REGION; j++)
             {
-                for (int k = 0; k < VOXELS_PER_REGION; k++)
+                for (int k = 0; k < DEPTH; k++)
                 {
 
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -87,16 +86,14 @@ public class GenerateExtraHardLevel : MonoBehaviour
                     cube.transform.parent = this.transform;
                     cube.transform.localScale = new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
                     cube.transform.localPosition = new Vector3((i * VOXEL_SIZE) + (VOXEL_SIZE / 2), (j * VOXEL_SIZE) + (VOXEL_SIZE / 2), k * VOXEL_SIZE);
-                    //cube.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
+                    cube.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
 
-                    if (i < (VOXELS_PER_REGION / 2) + hDispl && j < (VOXELS_PER_REGION / 2) + vDispl && k < VOXELS_PER_REGION / 2)
+                    if (i < (VOXELS_PER_REGION / 2) + hDispl && j < (VOXELS_PER_REGION / 2) + vDispl && k < DEPTH / 2)
                     {
-                        cube.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
                         cube.name = "Quitar";
                     }
                     else
                     {
-                        cube.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
                         cube.name = "Dejar";
                     }
                 }
@@ -110,7 +107,7 @@ public class GenerateExtraHardLevel : MonoBehaviour
         {
             for (int j = 0; j > -VOXELS_PER_REGION; j--)
             {
-                for (int k = 0; k < VOXELS_PER_REGION; k++)
+                for (int k = 0; k < DEPTH; k++)
                 {
 
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -118,16 +115,14 @@ public class GenerateExtraHardLevel : MonoBehaviour
                     cube.transform.parent = this.transform;
                     cube.transform.localScale = new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
                     cube.transform.localPosition = new Vector3((i * VOXEL_SIZE) + (VOXEL_SIZE / 2), (j * VOXEL_SIZE) - (VOXEL_SIZE / 2), k * VOXEL_SIZE);
-                    //cube.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
+                    cube.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
 
-                    if (i < (VOXELS_PER_REGION / 2) + hDispl && j > -(VOXELS_PER_REGION / 2) + vDispl && k < VOXELS_PER_REGION / 2)
+                    if (i < (VOXELS_PER_REGION / 2) + hDispl && j > -(VOXELS_PER_REGION / 2) + vDispl && k < DEPTH / 2)
                     {
-                        cube.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
                         cube.name = "Quitar";
                     }
                     else
                     {
-                        cube.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
                         cube.name = "Dejar";
                     }
                 }
@@ -141,7 +136,7 @@ public class GenerateExtraHardLevel : MonoBehaviour
         {
             for (int j = 0; j > -VOXELS_PER_REGION; j--)
             {
-                for (int k = 0; k < VOXELS_PER_REGION; k++)
+                for (int k = 0; k < DEPTH; k++)
                 {
 
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -149,16 +144,14 @@ public class GenerateExtraHardLevel : MonoBehaviour
                     cube.transform.parent = this.transform;
                     cube.transform.localScale = new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
                     cube.transform.localPosition = new Vector3((i * VOXEL_SIZE) - (VOXEL_SIZE / 2), (j * VOXEL_SIZE) - (VOXEL_SIZE / 2), k * VOXEL_SIZE);
-                    //cube.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
+                    cube.GetComponent<Renderer>().material.color = new Color(0, 0, 1, 1);
 
-                    if (i > -(VOXELS_PER_REGION / 2) + hDispl && j > -(VOXELS_PER_REGION / 2) + vDispl && k < VOXELS_PER_REGION / 2)
+                    if (i > -(VOXELS_PER_REGION / 2) + hDispl && j > -(VOXELS_PER_REGION / 2) + vDispl && k < DEPTH / 2)
                     {
-                        cube.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
                         cube.name = "Quitar";
                     }
                     else
                     {
-                        cube.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
                         cube.name = "Dejar";
                     }
                 }

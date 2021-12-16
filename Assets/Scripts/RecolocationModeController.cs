@@ -10,8 +10,6 @@ public class RecolocationModeController : MonoBehaviour
     public GameObject workspace;
     public GameObject avatar;
 
-    private ModeController modeController;
-
     //public Text lookAtWorkspaceText;
 
     private GameObject textCanvas;
@@ -29,9 +27,13 @@ public class RecolocationModeController : MonoBehaviour
     private int lastState, currentState;
     private int increaseDepthCounter, decreaseDepthCounter;
 
+    private SceneController scene;
+
     // Start is called before the first frame update
     void Start()
     {
+        scene = GameObject.Find("Scene").GetComponent<SceneController>();
+
         //textCanvas = lookAtWorkspaceText.transform.parent.gameObject;
         showingLookAtWorkspaceText = false;
         movingWorkspace = false;
@@ -45,8 +47,6 @@ public class RecolocationModeController : MonoBehaviour
         currentState = 0;
         increaseDepthCounter = 0;
         decreaseDepthCounter = 0;
-
-        modeController = GetComponentInParent<ModeController>();
     }
 
     // Update is called once per frame
@@ -165,12 +165,12 @@ public class RecolocationModeController : MonoBehaviour
             {
                 if (currentState == 1)
                 {
-                    modeController.register("Se aleja el workspace");
+                    scene.register("Se aleja el workspace");
                 }
 
                 if (currentState == -1)
                 {
-                    modeController.register("Se acerca el workspace");
+                    scene.register("Se acerca el workspace");
                 }
 
                 lastState = currentState;

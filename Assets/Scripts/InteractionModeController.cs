@@ -10,7 +10,6 @@ public class InteractionModeController : MonoBehaviour
     //public GameObject workspace;
 
     private HapticButtonsController hapticButtonsController;
-    private ModeController modeController;
 
     private TextMesh sizeText;
 
@@ -22,9 +21,13 @@ public class InteractionModeController : MonoBehaviour
 
     private bool updateFlag;
 
+    private SceneController scene;
+
     // Start is called before the first frame update
     void Start()
     {
+        scene = GameObject.Find("Scene").GetComponent<SceneController>();
+
         scale = hapticDevice.transform.localScale.x;
 
         interactionTimer = 0.0f;
@@ -38,8 +41,6 @@ public class InteractionModeController : MonoBehaviour
         updateFlag = true;
 
         hapticButtonsController = GetComponentInParent<HapticButtonsController>();
-
-        modeController = GetComponentInParent<ModeController>();
 
         sizeText = GameObject.Find("ws_info").GetComponent<TextMesh>();
     }
@@ -177,12 +178,12 @@ public class InteractionModeController : MonoBehaviour
         {
             if (currentState == 1)
             {
-                modeController.register("Workspace mas pequeno");
+                scene.register("Workspace mas pequeno");
             }
 
             if (currentState == -1)
             {
-                modeController.register("Workspace mas grande");
+                scene.register("Workspace mas grande");
             }
 
             lastState = currentState;

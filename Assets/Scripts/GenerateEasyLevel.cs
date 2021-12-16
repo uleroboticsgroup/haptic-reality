@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GenerateEasyLevel : MonoBehaviour
 {
-    private float VOXEL_SIZE = 0.02f;
+    private float VOXEL_SIZE = 0.01f;
     private int VOXELS_PER_REGION = 4;
+    private int DEPTH = 6;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,7 +23,7 @@ public class GenerateEasyLevel : MonoBehaviour
     private void buildTopLeft() {
         for(int i=0; i>-VOXELS_PER_REGION; i--) {
             for(int j=0; j<VOXELS_PER_REGION; j++) {
-                for(int k=0; k<VOXELS_PER_REGION; k++) {
+                for(int k=0; k<DEPTH; k++) {
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     cube.GetComponent<Renderer>().material.color = new Color(1,0,0,1);
                     cube.name = "Dejar";
@@ -38,14 +39,23 @@ public class GenerateEasyLevel : MonoBehaviour
     private void buildTopRight() {
         for(int i=0; i<VOXELS_PER_REGION; i++) {
             for(int j=0; j<VOXELS_PER_REGION; j++) {
-                for(int k=0; k<VOXELS_PER_REGION; k++) {
+                for(int k=0; k<DEPTH; k++) {
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cube.GetComponent<Renderer>().material.color = new Color(0,1,0,1);
-                    cube.name = "Quitar";
                     cube.tag = "Touchable";
                     cube.transform.parent = this.transform;
                     cube.transform.localScale = new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
                     cube.transform.localPosition = new Vector3((i * VOXEL_SIZE) + (VOXEL_SIZE / 2), (j * VOXEL_SIZE) + (VOXEL_SIZE / 2), k * VOXEL_SIZE);
+
+                    if (i < VOXELS_PER_REGION / 2)
+                    {
+                        cube.name = "Dejar";
+                        cube.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+                    }
+                    else
+                    {
+                        cube.name = "Quitar";
+                        cube.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
+                    }
                 }
             }
         }
@@ -54,14 +64,23 @@ public class GenerateEasyLevel : MonoBehaviour
     private void buildBottomRight() {
         for(int i=0; i<VOXELS_PER_REGION; i++) {
             for(int j=0; j>-VOXELS_PER_REGION; j--) {
-                for(int k=0; k<VOXELS_PER_REGION; k++) {
+                for(int k=0; k<DEPTH; k++) {
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    cube.GetComponent<Renderer>().material.color = new Color(0,1,0,1);
-                    cube.name = "Quitar";
                     cube.tag = "Touchable";
                     cube.transform.parent = this.transform;
                     cube.transform.localScale = new Vector3(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
                     cube.transform.localPosition = new Vector3((i * VOXEL_SIZE) + (VOXEL_SIZE / 2), (j * VOXEL_SIZE) - (VOXEL_SIZE / 2), k * VOXEL_SIZE);
+
+                    if (i < VOXELS_PER_REGION / 2)
+                    {
+                        cube.name = "Dejar";
+                        cube.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+                    }
+                    else
+                    {
+                        cube.name = "Quitar";
+                        cube.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 1);
+                    }
                 }
             }
         }
@@ -70,7 +89,7 @@ public class GenerateEasyLevel : MonoBehaviour
     private void buildBottomLeft() {
         for(int i=0; i>-VOXELS_PER_REGION; i--) {
             for(int j=0; j>-VOXELS_PER_REGION; j--) {
-                for(int k=0; k<VOXELS_PER_REGION; k++) {
+                for(int k=0; k<DEPTH; k++) {
                     GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     cube.GetComponent<Renderer>().material.color = new Color(1,0,0,1);
                     cube.name = "Dejar";
