@@ -11,9 +11,18 @@ public class GenerateExtraHardLevel : MonoBehaviour
     private int hDispl;
     private int vDispl;
 
+    private int dejarCounter = 0;
+    private int quitarCounter = 0;
+
+    private bool countSetted = false;
+
+    public SceneController scene;
+
     // Start is called before the first frame update
     void Awake()
     {
+        scene = GameObject.Find("Scene").GetComponent<SceneController>();
+
         hDispl = Random.Range(-1, 2);
 
         if(hDispl == 0)
@@ -40,7 +49,13 @@ public class GenerateExtraHardLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!countSetted)
+        {
+            scene.setVoxelCount("Dejar", dejarCounter);
+            scene.setVoxelCount("Quitar", quitarCounter);
+
+            countSetted = true;
+        }
     }
 
     private void buildTopLeft()
@@ -62,10 +77,12 @@ public class GenerateExtraHardLevel : MonoBehaviour
                     if (i > -(VOXELS_PER_REGION / 2) + hDispl && j < (VOXELS_PER_REGION / 2) + vDispl && k < DEPTH / 2)
                     {
                         cube.name = "Quitar";
+                        quitarCounter++;
                     }
                     else
                     {
                         cube.name = "Dejar";
+                        dejarCounter++;
                     }
                 }
             }
@@ -91,10 +108,12 @@ public class GenerateExtraHardLevel : MonoBehaviour
                     if (i < (VOXELS_PER_REGION / 2) + hDispl && j < (VOXELS_PER_REGION / 2) + vDispl && k < DEPTH / 2)
                     {
                         cube.name = "Quitar";
+                        quitarCounter++;
                     }
                     else
                     {
                         cube.name = "Dejar";
+                        dejarCounter++;
                     }
                 }
             }
@@ -120,10 +139,12 @@ public class GenerateExtraHardLevel : MonoBehaviour
                     if (i < (VOXELS_PER_REGION / 2) + hDispl && j > -(VOXELS_PER_REGION / 2) + vDispl && k < DEPTH / 2)
                     {
                         cube.name = "Quitar";
+                        quitarCounter++;
                     }
                     else
                     {
                         cube.name = "Dejar";
+                        dejarCounter++;
                     }
                 }
             }
@@ -149,10 +170,12 @@ public class GenerateExtraHardLevel : MonoBehaviour
                     if (i > -(VOXELS_PER_REGION / 2) + hDispl && j > -(VOXELS_PER_REGION / 2) + vDispl && k < DEPTH / 2)
                     {
                         cube.name = "Quitar";
+                        quitarCounter++;
                     }
                     else
                     {
                         cube.name = "Dejar";
+                        dejarCounter++;
                     }
                 }
             }

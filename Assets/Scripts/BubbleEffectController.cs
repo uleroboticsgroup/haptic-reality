@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ public class BubbleEffectController : MonoBehaviour
         if (other.gameObject.name == "Avatar")
         {
             GetComponentInParent<HapticEffect>().enabled = false;
-            scene.register("La burbuja deja de moverse");
+            this.registerEvent("La burbuja deja de moverse");
         }
     }
 
@@ -32,7 +33,15 @@ public class BubbleEffectController : MonoBehaviour
         if (other.gameObject.name == "Avatar")
         {
             GetComponentInParent<HapticEffect>().enabled = true;
-            scene.register("La burbuja se mueve");
+            this.registerEvent("La burbuja se mueve");
+        }
+    }
+
+    private void registerEvent(String e)
+    {
+        if (scene != null)
+        {
+            scene.register(e);
         }
     }
 }

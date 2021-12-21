@@ -56,6 +56,16 @@ public class ModeController : MonoBehaviour
         triesToSwitchToRecolocationCounter = 0;
 
         statsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "\\stats.csv";
+
+        Renderer[] renderers = workspace.GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer r in renderers)
+        {
+            if (r.gameObject.name != "ws_info")
+            {
+                r.material.color = Color.cyan;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -78,7 +88,7 @@ public class ModeController : MonoBehaviour
         {
             if (canSwitchToInteractionMode())
             {
-                scene.register("Recolocacion - interaccion");
+                this.registerEvent("Recolocacion - interaccion");
 
                 Renderer[] renderers = workspace.GetComponentsInChildren<Renderer>();
 
@@ -86,7 +96,7 @@ public class ModeController : MonoBehaviour
                 {
                     if (r.gameObject.name != "ws_info")
                     {
-                        r.material.color = originalWorkspaceColor;
+                        r.material.color = Color.cyan;
                     }
                 }
 
@@ -99,14 +109,14 @@ public class ModeController : MonoBehaviour
             }
             else
             {
-                scene.register("Se ha podido cambiar al modo interaccion");
+                this.registerEvent("Se ha podido cambiar al modo interaccion");
                 modeSwitcher = !modeSwitcher;
             }
         }
 
         if (modeSwitcher && this.mode != "recolocacion")
         {
-            scene.register("Interaccion - recolocacion");
+            this.registerEvent("Interaccion - recolocacion");
 
             this.mode = "recolocacion";
             hapticDevice.GetComponent<HapticPlugin>().shapesEnabled = false;
@@ -131,5 +141,13 @@ public class ModeController : MonoBehaviour
 
         //return avatar.GetComponent<AvatarController>().safePlace;
         return true;
+    }
+
+    private void registerEvent(String e)
+    {
+        if(scene != null)
+        {
+            scene.register(e);
+        }
     }
 }

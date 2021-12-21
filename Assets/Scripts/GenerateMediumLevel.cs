@@ -8,16 +8,30 @@ public class GenerateMediumLevel : MonoBehaviour
     private int VOXELS_PER_REGION = 4;
     private int DEPTH = 6;
 
+    private int dejarCounter = 0;
+    private int quitarCounter = 0;
+
+    private bool countSetted = false;
+
+    public SceneController scene;
+
     // Start is called before the first frame update
     void Awake()
     {
+        scene = GameObject.Find("Scene").GetComponent<SceneController>();
         generate();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!countSetted)
+        {
+            scene.setVoxelCount("Dejar", dejarCounter);
+            scene.setVoxelCount("Quitar", quitarCounter);
+
+            countSetted = true;
+        }
     }
 
     private void buildTopLeft() {
@@ -33,10 +47,12 @@ public class GenerateMediumLevel : MonoBehaviour
                     
                     if(i > -(VOXELS_PER_REGION / 2) && j < VOXELS_PER_REGION / 2 && k < DEPTH / 2) {
                         cube.name = "Quitar";
+                        quitarCounter++;
                         cube.GetComponent<Renderer>().material.color = new Color(0,1,0,1);
                     }
                     else {
                         cube.name = "Dejar";
+                        dejarCounter++;
                         cube.GetComponent<Renderer>().material.color = new Color(1,0,0,1);
                     }
                 }
@@ -57,10 +73,12 @@ public class GenerateMediumLevel : MonoBehaviour
                     
                     if(i < VOXELS_PER_REGION / 2 && j < VOXELS_PER_REGION / 2 && k < DEPTH / 2) {
                         cube.name = "Quitar";
+                        quitarCounter++;
                         cube.GetComponent<Renderer>().material.color = new Color(0,1,0,1);
                     }
                     else {
                         cube.name = "Dejar";
+                        dejarCounter++;
                         cube.GetComponent<Renderer>().material.color = new Color(1,0,0,1);
                     }
                 }
@@ -81,10 +99,12 @@ public class GenerateMediumLevel : MonoBehaviour
                     
                     if(i < VOXELS_PER_REGION / 2 && j > -(VOXELS_PER_REGION / 2) && k < DEPTH / 2) {
                         cube.name = "Quitar";
+                        quitarCounter++;
                         cube.GetComponent<Renderer>().material.color = new Color(0,1,0,1);
                     }
                     else {
                         cube.name = "Dejar";
+                        dejarCounter++;
                         cube.GetComponent<Renderer>().material.color = new Color(1,0,0,1);
                     }
                 }
@@ -105,10 +125,12 @@ public class GenerateMediumLevel : MonoBehaviour
                     
                     if(i > -(VOXELS_PER_REGION / 2) && j > -(VOXELS_PER_REGION / 2) && k < DEPTH / 2) {
                         cube.name = "Quitar";
+                        quitarCounter++;
                         cube.GetComponent<Renderer>().material.color = new Color(0,1,0,1);
                     }
                     else {
                         cube.name = "Dejar";
+                        dejarCounter++;
                         cube.GetComponent<Renderer>().material.color = new Color(1,0,0,1);
                     }
                 }

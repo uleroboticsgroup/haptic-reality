@@ -811,6 +811,7 @@ MonoBehaviour:
   workspace: {fileID: 708847995}
   camera: {fileID: 539819081}
   scene: {fileID: 273411368}
+  haptic: {fileID: 2095458159}
 --- !u!114 &1082509929
 MonoBehaviour:
   m_ObjectHideFlags: 0

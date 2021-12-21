@@ -11,8 +11,6 @@ public class InteractionModeController : MonoBehaviour
 
     private HapticButtonsController hapticButtonsController;
 
-    private TextMesh sizeText;
-
     private float scale;
 
     private float interactionTimer, beforeStartInteractionTimer;
@@ -41,8 +39,6 @@ public class InteractionModeController : MonoBehaviour
         updateFlag = true;
 
         hapticButtonsController = GetComponentInParent<HapticButtonsController>();
-
-        sizeText = GameObject.Find("ws_info").GetComponent<TextMesh>();
     }
 
     // Update is called once per frame
@@ -70,14 +66,6 @@ public class InteractionModeController : MonoBehaviour
             currentState = 1;
 
             scale -= 0.00001f;
-
-            float size = scale / 0.00075f;
-            sizeText.text = "WS SIZE: " + size;
-            sizeText.color = Color.white;
-
-            Quaternion allAxisQuaternion = Quaternion.LookRotation(sizeText.gameObject.transform.position - Camera.main.transform.position);
-            Quaternion xAxisOnlyQuaternion = Quaternion.Euler(allAxisQuaternion.eulerAngles.x, sizeText.gameObject.transform.rotation.eulerAngles.y, sizeText.gameObject.transform.rotation.eulerAngles.z);
-            sizeText.gameObject.transform.rotation = xAxisOnlyQuaternion;
 
             Vector3 A = hapticDevice.transform.localPosition;
 
@@ -126,13 +114,11 @@ public class InteractionModeController : MonoBehaviour
 
             scale += 0.00001f;
 
+            /*
             float size = scale / 0.00075f;
             sizeText.text = "WS SIZE: " + size;
             sizeText.color = Color.white;
-
-            Quaternion allAxisQuaternion = Quaternion.LookRotation(sizeText.gameObject.transform.position - Camera.main.transform.position);
-            Quaternion xAxisOnlyQuaternion = Quaternion.Euler(allAxisQuaternion.eulerAngles.x, sizeText.gameObject.transform.rotation.eulerAngles.y, sizeText.gameObject.transform.rotation.eulerAngles.z);
-            sizeText.gameObject.transform.rotation = xAxisOnlyQuaternion;
+            */
 
             Vector3 A = hapticDevice.transform.localPosition;
 
@@ -165,11 +151,6 @@ public class InteractionModeController : MonoBehaviour
         }
         else
         {
-            if(lastState != 0)
-            {
-                StartCoroutine(sizeIndicatorFadeOut());
-            }
-
             currentState = 0;
             lastState = 0;
         }
@@ -187,17 +168,6 @@ public class InteractionModeController : MonoBehaviour
             }
 
             lastState = currentState;
-        }
-    }
-
-    IEnumerator sizeIndicatorFadeOut()
-    {
-        Color originalColor = sizeText.color;
-
-        for (float t = 0.01f; t < 3.0f; t += Time.deltaTime)
-        {
-            sizeText.color = Color.Lerp(originalColor, Color.clear, Mathf.Min(1, t / 3.0f));
-            yield return null;
         }
     }
 }

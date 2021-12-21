@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bubble/BubbleExtraHardLevel.unity
     guid: ccab3508b0214c94a96176970769092b
+  - enabled: 1
+    path: Assets/Scenes/Test/HapticRealityTest.unity
+    guid: 5b7a794f26b75b643b3317d3a4fc4cd7
+  - enabled: 1
+    path: Assets/Scenes/Test/BubbleTest.unity
+    guid: be7d2bac87615934fadd7f08393c417a
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ad712e8159a54b14ea3fd4ffc3b6fae1, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 06476f982f62d8745ae7061a201fc27d, type: 2}

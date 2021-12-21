@@ -102,12 +102,12 @@ public class RecolocationModeController : MonoBehaviour
             if (GetComponentInParent<HapticButtonsController>().darkContinuous)
             {
                 currentState = 1;
-                depth += 0.005f;
+                depth += 0.001f;
             }
             else if (GetComponentInParent<HapticButtonsController>().lightContinuous)
             {
                 currentState = -1;
-                depth -= 0.005f;
+                depth -= 0.001f;
             }
             else
             {

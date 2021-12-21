@@ -11,6 +11,8 @@ public class BubbleInverseController : MonoBehaviour
     public GameObject camera;
     public GameObject scene;
 
+    public GameObject haptic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,13 @@ public class BubbleInverseController : MonoBehaviour
         {
             scene.transform.position += (bubble.transform.position - avatar.transform.position) * Time.deltaTime * Vector3.Distance(bubble.transform.position, avatar.transform.position) * 6.0f;
             camera.transform.position += (bubble.transform.position - avatar.transform.position) * Time.deltaTime * Vector3.Distance(bubble.transform.position, avatar.transform.position) * 6.0f;
+
+            updateBubbleRotation();
         }
+    }
+
+    void updateBubbleRotation()
+    {
+        haptic.transform.rotation = Camera.main.transform.rotation;
     }
 }
