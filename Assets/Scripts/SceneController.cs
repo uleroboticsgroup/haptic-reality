@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System;
+using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 public class SceneController : MonoBehaviour
 {
-    public HapticButtonsController hapticButtons;
-
     private List<DateTime> registryTimestamps = new List<DateTime>();
     private List<String> registryEvents = new List<String>();
     private String registryFileName;
@@ -17,18 +17,21 @@ public class SceneController : MonoBehaviour
     private int removedDejar = 0;
 
     // Start is called before the first frame update
+    [Obsolete]
     void Start()
     {
         registryFileName = DateTime.Now.ToString().Replace('/', '-').Replace(':', '-') + ".csv";
 
         this.register("Cargada la escena " + SceneManager.GetActiveScene().name);
+
+        XRDevice.SetTrackingSpaceType(TrackingSpaceType.RoomScale);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(hapticButtons.lightSimple) {
-            hapticButtons.lightSimple = false;
+        /*
+        if(Mouse.current.leftButton.wasReleasedThisFrame) {
 
             switch( SceneManager.GetActiveScene().name) {
                 case "EasyLevel":
@@ -60,6 +63,7 @@ public class SceneController : MonoBehaviour
                     break;
             }
         }
+        */
     }
 
     public void register(String e)

@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class TestController : MonoBehaviour
 {
-    public HapticButtonsController hapticButtons;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +15,8 @@ public class TestController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hapticButtons.lightSimple)
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            hapticButtons.lightSimple = false;
-
             if (SceneManager.GetActiveScene().name == "HapticRealityTest")
             {
                 SceneManager.LoadScene("BubbleTest", LoadSceneMode.Single);
